@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { Loading } from "../../Components/appCommon";
 import DatapageLayout from "../PageLayoutEmpty";
 import Table from "react-bootstrap/Table";
+import Button from 'react-bootstrap/Button';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 
 export default class Edit extends React.Component {
   state = {
@@ -86,15 +88,15 @@ export default class Edit extends React.Component {
     });
   };
 
-//   delete = async (data) => {
-//     await fetch(`https://localhost:5001/api/Project/Delete/${data}`, {
-//       method: "DELETE",
-//       headers: { "Content-Type": "application/json" },
-//     }).then(async (res) => {
-//       location.href = `/Project`;
-//     });
-//   };
-  delete = (data) =>{
+  //   delete = async (data) => {
+  //     await fetch(`https://localhost:5001/api/Project/Delete/${data}`, {
+  //       method: "DELETE",
+  //       headers: { "Content-Type": "application/json" },
+  //     }).then(async (res) => {
+  //       location.href = `/Project`;
+  //     });
+  //   };
+  delete = (data) => {
     window.location.href = `/Project/${data}`;
   }
 
@@ -175,6 +177,10 @@ export default class Edit extends React.Component {
             data={data[0]}
             delete={this.delete}
           />
+          <div>
+            <h1 style={{ marginBottom: '20px' }}>Add Volunteers to this Project</h1>
+            <TableButton />
+          </div>
         </DatapageLayout>
       );
     }
@@ -222,3 +228,72 @@ const ProjectTable = (props) => {
     </Table>
   );
 };
+function TableButton() {
+  const [showTable, setShowTable] = useState(false);
+
+  function handleClick() {
+    setShowTable(!showTable);
+  }
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div>
+      <Button onClick={handleClick} variant="primary">Show Available Volunteers</Button>{' '}
+      {showTable && (
+        <Table striped bordered hover style={{ marginTop: '30px' }}>
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>User Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> Column 1</td>
+              <td> Column 2</td>
+              <td> Column 2</td>
+              <td> Column 2</td>
+              <td style={{ textAlign: 'center', width: '100px', height: '100px' }}>
+                <ToggleButton
+                  className="mb-2"
+                  style={{ margin: 'auto' }}
+                  id="toggle-check"
+                  type="checkbox"
+                  variant="outline-primary"
+                  checked={checked}
+                  onChange={(e) => setChecked(e.currentTarget.checked)}
+                >
+                  Select
+                </ToggleButton>
+              </td>
+            </tr>
+            <tr>
+              <td> Column 1</td>
+              <td> Column 2</td>
+              <td> Column 2</td>
+              <td> Column 2</td>
+              <td style={{ textAlign: 'center', width: '100px', height: '100px' }}>
+                <ToggleButton
+                  className="mb-2"
+                  style={{ margin: 'auto' }}
+                  id="toggle-check"
+                  type="checkbox"
+                  variant="outline-primary"
+                  checked={checked}
+                  onChange={(e) => setChecked(e.currentTarget.checked)}
+                >
+                  Select
+                </ToggleButton>
+              </td>
+            </tr>
+
+          </tbody>
+        </Table>
+      )}
+    </div>
+  );
+};
+
