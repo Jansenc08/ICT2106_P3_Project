@@ -340,64 +340,84 @@ const ProjectTable = (props) => {
   console.log(projects);
   return (
     <>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th onClick={() => applySorting("ProjectName", !sorting.ascending)}>
-            Project Name
-          </th>
-          <th
-            colSpan={2}
-            onClick={() =>
-              applySorting("ProjectDescription", !sorting.ascending)
-            }
-          >
-            Project Description
-          </th>
-          <th onClick={() => applySorting("ProjectBudget", !sorting.ascending)}>
-            Project Budget
-          </th>
-          <th
-            onClick={() => applySorting("ProjectStartDate", !sorting.ascending)}
-          >
-            Start Date
-          </th>
-          <th
-            onClick={() => applySorting("ProjectEndDate", !sorting.ascending)}
-          >
-            End Date
-          </th>
-          <th onClick={() => applySorting("ProjectStatus", !sorting.ascending)}>
-            Project Status
-          </th>
-          <th></th>
-        </tr>
-      </thead>
-      {projects.map((item, key) => {
-        return (
-          <tbody key={key}>
-            <tr>
-              <td>{key + 1}</td>
-              <td>{item.ProjectName}</td>
-              <td colSpan={2}>{item.ProjectDescription}</td>
-              <td>{item.ProjectBudget}</td>
-              <td>{item.ProjectStartDate}</td>
-              <td>{item.ProjectEndDate}</td>
-              <td>{item.ProjectStatus}</td>
-              <td>
-                <button onClick={() => routeChange(item.ProjectId)}>
-                  View
-                </button>
-                {/* <button onClick={() => setUndo(true)}>Undo</button> */}
-              </td>
-            </tr>
-          </tbody>
-        );
-      })}
-     
-    </Table>
-     <ToastContainer theme="dark" /></>
-    
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th onClick={() => applySorting("ProjectName", !sorting.ascending)}>
+              Project Name
+            </th>
+            <th
+              colSpan={2}
+              onClick={() =>
+                applySorting("ProjectDescription", !sorting.ascending)
+              }
+            >
+              Project Description
+            </th>
+
+            <th
+              onClick={() => applySorting("ProjectBudget", !sorting.ascending)}
+            >
+              Project Budget
+            </th>
+            <th
+              onClick={() =>
+                applySorting("ProjectStartDate", !sorting.ascending)
+              }
+            >
+              Start Date
+            </th>
+            <th
+              onClick={() => applySorting("ProjectEndDate", !sorting.ascending)}
+            >
+              End Date
+            </th>
+            <th
+              onClick={() => applySorting("ProjectStatus", !sorting.ascending)}
+            >
+              Project Status
+            </th>
+          </tr>
+        </thead>
+        {projects.map((item, key) => {
+          return (
+            <tbody key={key}>
+              <tr>
+                <td>{key + 1}</td>
+                <td>{item.ProjectName}</td>
+                <td colSpan={2}>
+                  <>
+                    {item.ProjectDescription}
+                    {/* {JSON.parse(item.ProjectType || "[]")?.length > 0 ? (
+                      <div className="mt-2">
+                        <b>Volunteers: </b>
+                        {JSON.parse(item.ProjectType || "[]")?.map((item) => (
+                          <span>
+                            {item?.username} <span></span>
+                          </span>
+                        )) || "N/A"}
+                      </div>
+                    ) : null} */}
+                  </>
+                </td>
+
+                <td>{item.ProjectBudget}</td>
+                <td>{item.ProjectStartDate}</td>
+                <td>{item.ProjectEndDate}</td>
+                <td>{item.ProjectStatus}</td>
+                <td>
+                  <button onClick={() => routeChange(item.ProjectId)}>
+                    View
+                  </button>
+                  {/* <button onClick={() => setUndo(true)}>Undo</button> */}
+                </td>
+              </tr>
+            </tbody>
+          );
+        })}
+      </Table>
+      <ToastContainer theme="dark" />
+    </>
   );
 };
