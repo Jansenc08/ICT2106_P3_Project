@@ -265,7 +265,7 @@ export default class Edit extends React.Component {
               deleteVolunteer={this.deleteVolunteer}
               data={data[0]}
             />
-            <h1 style={{ marginBottom: "20px" }}>
+            <h1 style={{ marginTop: "100px", marginBottom: "20px" }}>
               Add Volunteers to this Project
             </h1>
             <TableButton
@@ -341,7 +341,7 @@ function TableButton(props) {
         Show Available Volunteers
       </Button>{" "}
       {!showTable && (
-        <Table striped bordered hover style={{ marginTop: "30px" }}>
+        <Table striped bordered hover style={{ marginTop: "20px" }}>
           <thead>
             <tr>
               <th>User ID</th>
@@ -414,7 +414,7 @@ function TableButton(props) {
               )} 
            </>
             );
-          })}
+          })}:
         </Table>
       )}
     </div>
@@ -424,6 +424,9 @@ function VolunteerTable(props) {
   console.log(props)
   return (
     <>
+    <h1 style={{ marginTop: "50px" }}>
+              Current Volunteers 
+            </h1>
       <div>
         <Table striped bordered hover style={{ marginTop: "30px" }}>
           <thead>
